@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AAROHAN Invitation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #120458, #7a04eb, #fe75fe);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2.5em;
+      letter-spacing: 1px;
+      animation: textFade 2s ease-in-out;
+    }
+
+    @keyframes textFade {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    #showBtn {
+      position: relative;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      background-color: #00ffe0;
+      color: #000;
+      border-radius: 10px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    #showBtn:hover {
+      background-color: #00fff0;
+      transform: scale(1.05);
+    }
+
+    #showBtn.clicked {
+      animation: glitch 0.6s steps(2, end) forwards;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); color: #000; background-color: #00ffe0; }
+      10% { transform: translate(-3px, 2px); color: #ff00c8; }
+      20% { transform: translate(3px, -1px); color: #0ff; background-color: #ff00c8; }
+      30% { transform: translate(-2px, 1px); color: #ff0; background-color: #000; }
+      50% { transform: translate(0); color: #000; background-color: #00ffe0; }
+      100% { transform: scale(0); opacity: 0; }
+    }
+
+    #cardImage {
+      margin-top: 30px;
+      max-width: 90%;
+      max-height: 80vh;
+      display: none;
+      border: 8px solid #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+      opacity: 0;
+      position: relative;
+    }
+
+    .show-card {
+      display: block !important;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Glitch Effect on Card */
+    #cardImage::before,
+    #cardImage::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      border-radius: 15px;
+      opacity: 0.1;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    #cardImage::before {
+      animation: glitchTop 2s infinite linear;
+      clip-path: inset(0 0 60% 0);
+      transform: translate(2px, -2px);
+      filter: hue-rotate(20deg);
+    }
+
+    #cardImage::after {
+      animation: glitchBot 1.8s infinite linear;
+      clip-path: inset(40% 0 0 0);
+      transform: translate(-2px, 2px);
+      filter: hue-rotate(-20deg);
+    }
+
+    @keyframes glitchTop {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 1px); }
+      40% { transform: translate(3px, -1px); }
+      60% { transform: translate(-1px, 2px); }
+      100% { transform: translate(0); }
+    }
+
+    @keyframes glitchBot {
+      0% { transform: translate(0); }
+      20% { transform: translate(2px, -1px); }
+      40% { transform: translate(-3px, 2px); }
+      60% { transform: translate(1px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    .glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: pulseGlow 3s infinite;
+      z-index: -1;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.2); opacity: 0.4; }
+      100% { transform: scale(1); opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow"></div>
+  <h1> We Welcome You to AAROHAN 2025</h1>
+  <button id="showBtn">View Invitation</button>
+  <img id="cardImage" src="AAROHAN.jpg" alt="Invitation Card">
+
+  <script>
+    const btn = document.getElementById('showBtn');
+    const card = document.getElementById('cardImage');
+
+    btn.addEventListener('click', () => {
+      btn.classList.add('clicked');
+
+      setTimeout(() => {
+        card.classList.add('show-card');
+      }, 600); // reveal after glitch animation
+    });
+  </script>
+
+</body>
+</html>
